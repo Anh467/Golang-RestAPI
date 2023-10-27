@@ -6,4 +6,5 @@ use (
 	./entities
 	./main
 	./storage
+	./transport
 )
