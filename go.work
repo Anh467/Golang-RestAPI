@@ -1,7 +1,9 @@
 go 1.21.3
 
 use (
+	./biz
 	./common
 	./entities
 	./main
+	./storage
 )

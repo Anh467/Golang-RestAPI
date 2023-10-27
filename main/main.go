@@ -4,8 +4,11 @@ import (
 	"common"
 	"encoding/json"
 	"entities"
+	"net/http"
 
 	"fmt"
+
+	"github.com/gin-gonic/gin"
 )
 
 var configPath string = "config.json"
@@ -51,6 +54,14 @@ func main() {
 	fmt.Print(configJson)
 	check := solution("abc", "bc")
 	fmt.Print("Test: ", check)
+	//gin
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
+	})
+	r.Run()
 }
 func solution(str, ending string) bool {
 	// Your code here!
