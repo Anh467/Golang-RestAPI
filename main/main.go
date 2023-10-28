@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"entities"
 	"log"
-	"net/http"
+	"routers"
 
 	"fmt"
-	"transport"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
@@ -66,34 +66,20 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	//gin
 	r := gin.Default()
+	// setting
+	r.Use(cors.New(cors.Config{
+		AllowHeaders:    []string{"*"},
+		AllowAllOrigins: true,
+	}))
 	//
 	r.ForwardedByClientIP = true
-
 	r.SetTrustedProxies([]string{"127.0.0.1", "192.168.1.2", "10.0.0.0/8"})
-	//router
-	v1 := r.Group("/v1")
-	{
-		user := v1.Group("/user")
-		{
-			user.GET("/ping", transport.ListUser(db))
-
-			user.GET("/list", listUser(db))
-		}
-	}
-
+	// router
+	routers.V1Router(r, db)
+	// run
 	r.Run()
 }
 
-func listUser(db *gorm.DB) func(c *gin.Context) {
-	return func(c *gin.Context) {
-		var users []entities.UserModel
-		db.Table(entities.UserModelTable).Find(&users)
-		c.JSON(http.StatusOK, gin.H{
-			"users":  users,
-			"length": len(users),
-		})
-	}
-}
 func ConnectSqlServerGorm(Config entities.SqlServer) (*gorm.DB, error) {
 	connString := fmt.Sprintf("server=localhost; user id=%s; password=%s; database=%s;",
 		Config.User, Config.Pass, Config.DB)

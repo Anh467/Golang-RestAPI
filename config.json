@@ -1,4 +1,6 @@
 {
+    "allowheaders": "*",
+    "allowallorigins": true,
     "port" :"8080",
     "mongodb":{
         "url": "mongodb://localhost:27017",

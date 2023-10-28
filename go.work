@@ -5,6 +5,7 @@ use (
 	./common
 	./entities
 	./main
+	./routers
 	./storage
 	./transport
 )
