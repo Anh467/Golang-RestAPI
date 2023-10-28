@@ -1,18 +1,27 @@
 package storage
 
 import (
+	"common"
 	"context"
 	"entities"
+	"fmt"
 )
 
 func (s *sqlserverStore) CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error) {
-	var userJWTModel *entities.UserJWTModel
-	if err := s.db.Table(entities.CategorieModelTable).Create(user).Error; err != nil {
+	userJWTModel := &entities.UserJWTModel{}
+	if err := s.db.Table(entities.UserModelTable).Create(user).Error; err != nil {
 		return userJWTModel, err
 	}
+	tokenString, err := common.CreateToken(user)
+	if err != nil {
+		return nil, err
+	}
+	// res
+	fmt.Printf("user: " + user.Email + " " + user.FullName + " " + user.Role + " " + tokenString)
+	userJWTModel.UserID = user.UserID
 	userJWTModel.Email = user.Email
 	userJWTModel.FullName = user.FullName
 	userJWTModel.Role = user.Role
-	userJWTModel.Token = ""
+	userJWTModel.Token = tokenString
 	return userJWTModel, nil
 }

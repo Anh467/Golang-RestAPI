@@ -11,6 +11,6 @@ func getListUser(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/user")
 	{
 		user.GET("/list", transport.ListUser(db))
-
+		user.POST("/create", transport.CreateUser(db))
 	}
 }
