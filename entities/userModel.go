@@ -46,3 +46,11 @@ type Claims struct {
 	Password string `json:"password"`
 	jwt.StandardClaims
 }
+
+func (UserModel) TableName() string {
+	return UserModelTable
+}
+
+func (UserCreateModel) TableName() string {
+	return UserModelTable
+}

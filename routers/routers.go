@@ -17,7 +17,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 	{
 		api := v1.Group("/api")
 		{
-			getListUser(api, db)
+			getUserRouters(api, db)
+			getProductRouters(api, db)
 		}
 	}
 }

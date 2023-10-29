@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func getListUser(api *gin.RouterGroup, db *gorm.DB) {
+func getUserRouters(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/user")
 	{
 		user.GET("/list", transport.ListUser(db))
