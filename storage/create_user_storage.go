@@ -4,11 +4,18 @@ import (
 	"common"
 	"context"
 	"entities"
+	"errors"
 	"fmt"
 )
 
 func (s *sqlserverStore) CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error) {
 	userJWTModel := &entities.UserJWTModel{}
+	// check unqiue email
+	tx := s.db.Select("Email").Table(entities.UserModelTable).Limit(1).Where("Email = ?", user.Email).Find(userJWTModel)
+	if tx.RowsAffected > 0 {
+		return nil, errors.New(entities.EMAILL_DUPLICATE)
+	}
+	// create user
 	if err := s.db.Table(entities.UserModelTable).Create(user).Error; err != nil {
 		return userJWTModel, err
 	}

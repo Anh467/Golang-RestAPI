@@ -13,6 +13,7 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			"test": "pinghhhhhhhhhhhhh",
 		})
 	})
+
 	v1 := r.Group("/v1")
 	{
 		api := v1.Group("/api")

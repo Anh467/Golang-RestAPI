@@ -4,7 +4,10 @@ import "github.com/dgrijalva/jwt-go"
 
 const UserModelTable = "Users"
 
-var JwtKey = []byte("my_secret_key")
+var JWT_SECRET_KEY = []byte("hehehehehehheh_moah_moah")
+
+// regex
+const EMAIL_REGEX = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
 
 // ERORR TAG
 const FULL_NAME_BLANK = "Full Name can't be blank"

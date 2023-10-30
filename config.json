@@ -2,6 +2,7 @@
     "allowheaders": "*",
     "allowallorigins": true,
     "port" :"8080",
+    "secretKey" : "rqewrqwerqwerqwerqwerqwer",
     "mongodb":{
         "url": "mongodb://localhost:27017",
         "db": "Shop"
