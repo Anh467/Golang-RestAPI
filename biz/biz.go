@@ -9,6 +9,8 @@ type CreateStorage interface {
 	ListUser(ctx context.Context) ([]entities.UserModel, error)
 	CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error)
 	ListProduct(ctx context.Context, offsetNum int, limitNum int) ([]entities.Product, error)
+	GetUser(ctx context.Context, email, pass string) entities.UserGetModel
+	SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error)
 }
 
 type createBiz struct {

@@ -3,21 +3,8 @@ package entities
 import "github.com/dgrijalva/jwt-go"
 
 const UserModelTable = "Users"
-
-var JWT_SECRET_KEY = []byte("hehehehehehheh_moah_moah")
-
-// regex
-const EMAIL_REGEX = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
-
-// ERORR TAG
-const FULL_NAME_BLANK = "Full Name can't be blank"
-const EMAILL_BLANK = "Email can't be blank"
-const PASS_WORD_BLANK = "Password can't be blank"
-const EMAILL_WRONG_REGEX = "Email wrong format"
-const EMAILL_DUPLICATE = "Email duplicate"
-
-// ERORR TAG JWT
-const TOKEN_NOT_APPROPRIATE = "Token not appropriate"
+const ROLE_USER = "user"
+const ROLE_ADMIN = "admin"
 
 type UserModel struct {
 	UserID   int    `json:"userid" gorm:"column:UserID;primaryKey"`
@@ -35,8 +22,15 @@ type UserCreateModel struct {
 	Role     string `json:"role" gorm:"column:Role"`
 }
 
+type UserGetModel struct {
+	UserID   int    `json:"userid" gorm:"column:UserID;primaryKey"`
+	FullName string `json:"fullname" gorm:"column:FullName"`
+	Email    string `json:"email" gorm:"column:Email"`
+	Role     string `json:"role" gorm:"column:Role"`
+}
+
 type UserJWTModel struct {
-	UserID   int    `json:"userid" gorm:"column:UserID"`
+	UserID   int    `json:"userid" gorm:"column:UserID;primaryKey"`
 	FullName string `json:"fullname" gorm:"column:FullName;"`
 	Email    string `json:"email" gorm:"column:Email;"`
 	Role     string `json:"role" gorm:"column:Role;"`

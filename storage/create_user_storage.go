@@ -13,7 +13,7 @@ func (s *sqlserverStore) CreateUser(ctx context.Context, user *entities.UserCrea
 	// check unqiue email
 	tx := s.db.Select("Email").Table(entities.UserModelTable).Limit(1).Where("Email = ?", user.Email).Find(userJWTModel)
 	if tx.RowsAffected > 0 {
-		return nil, errors.New(entities.EMAILL_DUPLICATE)
+		return nil, errors.New(common.EMAILL_DUPLICATE)
 	}
 	// create user
 	if err := s.db.Table(entities.UserModelTable).Create(user).Error; err != nil {

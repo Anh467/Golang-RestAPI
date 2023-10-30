@@ -1,0 +1,32 @@
+package transport
+
+import (
+	"biz"
+	"entities"
+	"net/http"
+	"storage"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
+
+func SignInAuthen(db *gorm.DB) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		var user *entities.UserModel
+		if err := c.ShouldBindJSON(&user); err != nil {
+			panic(err.Error())
+		}
+		// setup dependencies
+		store := storage.NewSQLServerStorage(db)
+		business := biz.NewCreateBiz(store)
+		//
+		userJwt, err := business.SignInAuthen(c.Request.Context(), user.Email, user.Password)
+		if err != nil {
+			panic(err.Error())
+		}
+		// reponse
+		c.JSON(http.StatusOK, gin.H{
+			"user": userJwt,
+		})
+	}
+}

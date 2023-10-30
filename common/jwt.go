@@ -20,7 +20,7 @@ func CreateToken(user *entities.UserCreateModel) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	// create token sign
-	tokenString, err := token.SignedString(entities.JWT_SECRET_KEY)
+	tokenString, err := token.SignedString(JWT_SECRET_KEY)
 	if err != nil {
 		return "", err
 	}
@@ -30,7 +30,7 @@ func CreateToken(user *entities.UserCreateModel) (string, error) {
 func PraseToken(tokenString string) (*entities.Claims, error) {
 	// Parse token từ chuỗi tokenString.
 	token, err := jwt.ParseWithClaims(tokenString, &entities.Claims{}, func(token *jwt.Token) (interface{}, error) {
-		return entities.JWT_SECRET_KEY, nil
+		return JWT_SECRET_KEY, nil
 	})
 	if err != nil {
 		return nil, err
@@ -41,6 +41,6 @@ func PraseToken(tokenString string) (*entities.Claims, error) {
 		return claims, nil
 	}
 	// Xác thực không thành công.
-	return nil, errors.New(entities.TOKEN_NOT_APPROPRIATE)
+	return nil, errors.New(TOKEN_NOT_APPROPRIATE)
 
 }

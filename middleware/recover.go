@@ -13,6 +13,8 @@ func Recovery() gin.HandlerFunc {
 				c.JSON(http.StatusBadRequest, gin.H{
 					"error": r,
 				})
+				c.Abort()
+				return
 			}
 		}()
 		c.Next()
