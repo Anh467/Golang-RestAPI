@@ -10,7 +10,7 @@ import (
 func getProductRouters(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/product")
 	{
-		user.GET("/list/:productid")
+		user.GET("/list/:productid", transport.GetProduct(db))
 		user.GET("/list", transport.ListProduct(db))
 		user.POST("/list")
 		user.PUT("/list/:productid")
