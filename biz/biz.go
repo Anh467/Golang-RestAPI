@@ -12,6 +12,7 @@ type CreateStorage interface {
 	GetUser(ctx context.Context, email, pass string) entities.UserGetModel
 	SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error)
 	GetProduct(ctx context.Context, productid string) *entities.Product
+	CreateProduct(ctx context.Context, product *entities.Product) *entities.Product
 }
 
 type createBiz struct {

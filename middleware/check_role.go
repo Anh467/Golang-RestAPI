@@ -12,14 +12,14 @@ import (
 
 func CheckRole(db *gorm.DB, roles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// defer recover
+		// flag to check panic
 		flag := false
-		// Đọc dữ liệu từ request body
+		// Read data from request body
 		var requestBody map[string]interface{}
 		decoder := json.NewDecoder(c.Request.Body)
 		decoder.Decode(&requestBody)
 
-		// Lấy giá trị của trường "fullname"
+		// Get key data "token"
 		token := requestBody["token"].(string)
 		// parse token
 		claims, err := common.PraseToken(token)
@@ -37,14 +37,13 @@ func CheckRole(db *gorm.DB, roles ...string) gin.HandlerFunc {
 		for _, role := range roles {
 			if role == user.Role {
 				flag = true
-				break
 			}
 		}
-
+		// go to next
 		if !flag {
 			panic(common.ROLE_USER_DENIED)
 		}
-
+		c.Set("requestBody", requestBody)
 		c.Next()
 	}
 }
