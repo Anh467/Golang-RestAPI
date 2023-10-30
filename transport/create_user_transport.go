@@ -30,8 +30,9 @@ func CreateUser(db *gorm.DB) func(c *gin.Context) {
 		//
 		users, err := business.CreateUserBiz(c.Request.Context(), user)
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
+			panic(err.Error())
+			//c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			//return
 		}
 		// reponse
 		c.JSON(http.StatusOK, gin.H{

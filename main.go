@@ -71,10 +71,11 @@ func main() {
 		AllowHeaders:    []string{"*"},
 		AllowAllOrigins: true,
 	}))
-
 	//
 	r.ForwardedByClientIP = true
 	r.SetTrustedProxies([]string{"127.0.0.1", "192.168.1.2", "10.0.0.0/8"})
+	// middleware recover
+
 	// router
 	routers.V1Router(r, db)
 	// run

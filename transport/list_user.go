@@ -21,8 +21,9 @@ func ListUser(db *gorm.DB) func(c *gin.Context) {
 		//
 		users, err := business.ListNewUserModel(c.Request.Context())
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
+			// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			// return
+			panic(err.Error())
 		}
 		// reponse
 		c.JSON(http.StatusOK, gin.H{

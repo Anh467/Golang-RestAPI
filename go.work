@@ -5,6 +5,7 @@ use (
 	./common
 	./entities
 	./main
+	./middleware
 	./routers
 	./storage
 	./transport
