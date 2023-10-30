@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -8,7 +9,7 @@ import (
 )
 
 func V1Router(r *gin.Engine, db *gorm.DB) {
-	//	r.Use(middleware.Recovery())
+	r.Use(middleware.Recovery())
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{

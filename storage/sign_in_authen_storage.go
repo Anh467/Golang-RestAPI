@@ -10,7 +10,7 @@ func (s *sqlserverStore) SignInAuthen(ctx context.Context, email, pass string) (
 	userJWTModel := &entities.UserJWTModel{}
 	user := &entities.UserCreateModel{}
 	// get user
-	if err := s.db.Table(entities.UserModelTable).Create(user).Error; err != nil {
+	if err := s.db.Table(entities.UserModelTable).Where("Email = ?", email).Where("Password = ?", pass).First(user).Error; err != nil {
 		return nil, err
 	}
 	// create token

@@ -7,13 +7,14 @@ import (
 )
 
 func (biz *createBiz) GetUserBiz(ctx context.Context, email, pass string) entities.UserGetModel {
-	var user entities.UserGetModel
-	if email != "" {
+	if email == "" {
 		panic(common.EMAILL_BLANK)
 	}
 
-	if pass != "" {
+	if pass == "" {
 		panic(common.PASS_WORD_BLANK)
 	}
+	user := biz.store.GetUser(ctx, email, pass)
+
 	return user
 }
