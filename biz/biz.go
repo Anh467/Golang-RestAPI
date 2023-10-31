@@ -9,6 +9,8 @@ type CreateStorage interface {
 	// user
 	ListUser(ctx context.Context) ([]entities.UserModel, error)
 	GetUser(ctx context.Context, email, pass string) entities.UserGetModel
+	UpdateUser(ctx context.Context, userUpdate entities.UserUpdate, userid int) *entities.UserModel
+	DeleteUser(ctx context.Context, userid int)
 	// authen
 	CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error)
 	SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error)

@@ -12,6 +12,8 @@ const EMAILL_BLANK = "Email can't be blank"
 const PASS_WORD_BLANK = "Password can't be blank"
 const EMAILL_WRONG_REGEX = "Email wrong format"
 const EMAILL_DUPLICATE = "Email duplicate"
+const USER_ID_NOT_FOUND = "user id not exist"
+const USER_ID_BLANK = "User can't be blank"
 
 // ERORR TAG JWT
 const TOKEN_NOT_APPROPRIATE = "Token not appropriate"
