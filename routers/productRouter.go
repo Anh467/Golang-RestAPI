@@ -15,7 +15,7 @@ func getProductRouters(api *gin.RouterGroup, db *gorm.DB) {
 		user.GET("/get/:productid", transport.GetProduct(db))
 		user.GET("/list", transport.ListProduct(db))
 		user.POST("/", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.CreateProductTransport(db))
-		user.PUT("/:productid")
-		user.DELETE("/:productid")
+		user.PUT("/:productid", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.UpdateProductTransport(db))
+		user.DELETE("/:productid", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.DeleteProductTransport(db))
 	}
 }

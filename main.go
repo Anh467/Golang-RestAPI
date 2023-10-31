@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"entities"
 	"log"
+	"os"
 	"routers"
+	"time"
 
 	"fmt"
 
@@ -13,6 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 var configPath string = "config.json"
@@ -83,9 +86,19 @@ func main() {
 }
 
 func ConnectSqlServerGorm(Config entities.SqlServer) (*gorm.DB, error) {
+	newLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+		logger.Config{
+			SlowThreshold:             time.Second,   // Slow SQL threshold
+			LogLevel:                  logger.Silent, // Log level
+			IgnoreRecordNotFoundError: true,          // Ignore ErrRecordNotFound error for logger
+			ParameterizedQueries:      true,          // Don't include params in the SQL log
+			Colorful:                  false,         // Disable color
+		},
+	)
 	connString := fmt.Sprintf("server=localhost; user id=%s; password=%s; database=%s;",
 		Config.User, Config.Pass, Config.DB)
-	db, err := gorm.Open(sqlserver.Open(connString), &gorm.Config{})
+	db, err := gorm.Open(sqlserver.Open(connString), &gorm.Config{Logger: newLogger})
 	if err != nil {
 		fmt.Print("connection wrong " + "\n")
 		log.Fatal(err)

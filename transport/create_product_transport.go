@@ -2,7 +2,6 @@ package transport
 
 import (
 	"biz"
-	"encoding/json"
 	"entities"
 	"net/http"
 	"storage"
@@ -20,20 +19,26 @@ func CreateProductTransport(db *gorm.DB) func(c *gin.Context) {
 			requestBody := c.MustGet("requestBody").(map[string]interface{})
 		*/
 		// get request body
-		var requestBody map[string]interface{}
-		decoder := json.NewDecoder(c.Request.Body)
-		decoder.Decode(&requestBody)
-		// parse to map
-		productMap := requestBody["product"].(map[string]interface{})
-		// parse map to object
-		productJSON, err := json.Marshal(productMap)
-		if err != nil {
-			panic(err)
-		}
-		// Unmarshal JSON data into product object
-		err = json.Unmarshal(productJSON, &product)
-		if err != nil {
-			panic(err)
+		/*
+				var requestBody map[string]interface{}
+				decoder := json.NewDecoder(c.Request.Body)
+				decoder.Decode(&requestBody)
+				// parse to map
+				productMap := requestBody["product"].(map[string]interface{})
+				// parse map to object
+				productJSON, err := json.Marshal(productMap)
+				if err != nil {
+					panic(err)
+				}
+
+			// Unmarshal JSON data into product object
+			err = json.Unmarshal(productJSON, &product)
+			if err != nil {
+				panic(err)
+			}
+		*/
+		if err := c.ShouldBindJSON(&product); err != nil {
+			panic(err.Error())
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)

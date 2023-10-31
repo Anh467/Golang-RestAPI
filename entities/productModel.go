@@ -12,11 +12,18 @@ type Product struct {
 }
 
 type ProductCreation struct {
-	ProductID   int    `json:"productid" gorm:"column:ProductID;primaryKey"`
-	Name        string `json:"name" gorm:"column:Name;primaryKey"`
-	Description int    `json:"description" gorm:"column:Description;primaryKey"`
-	Price       int    `json:"price" gorm:"column:Price;primaryKey"`
-	CategoryID  int    `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
+	ProductID   int     `json:"productid" gorm:"column:ProductID;primaryKey"`
+	Name        string  `json:"name" gorm:"column:Name;primaryKey"`
+	Description string  `json:"description" gorm:"column:Description;primaryKey"`
+	Price       float64 `json:"price" gorm:"column:Price;primaryKey"`
+	CategoryID  int     `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
+}
+
+type ProductUpdate struct {
+	Name        string  `json:"name" gorm:"column:Name;primaryKey"`
+	Description string  `json:"description" gorm:"column:Description;primaryKey"`
+	Price       float64 `json:"price" gorm:"column:Price;primaryKey"`
+	CategoryID  int     `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
 }
 
 func (Product) TableName() string {
@@ -24,5 +31,9 @@ func (Product) TableName() string {
 }
 
 func (ProductCreation) TableName() string {
+	return ProductModelTable
+}
+
+func (ProductUpdate) TableName() string {
 	return ProductModelTable
 }
