@@ -23,7 +23,7 @@ func (s *sqlserverStore) UpdateProduct(ctx context.Context, product entities.Pro
 		}
 	}
 	// get product id
-	if err := s.db.Where("ProductID = ?", productid).Updates(&product).Error; err != nil {
+	if err := s.db.Where("ProductID = ?", productid).Model(&productTemp).Updates(&product).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			panic(common.PRODUCT_ID_NOT_EXIST)
 		} else {
