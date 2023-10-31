@@ -16,18 +16,23 @@ func CreateProductTransport(db *gorm.DB) func(c *gin.Context) {
 		// declare product
 		var product *entities.Product
 		// Read data from request body
-		requestBody := c.MustGet("requestBody").(map[string]interface{})
+		/*
+			requestBody := c.MustGet("requestBody").(map[string]interface{})
+		*/
+		// get request body
+		var requestBody map[string]interface{}
+		decoder := json.NewDecoder(c.Request.Body)
+		decoder.Decode(&requestBody)
+		// parse to map
 		productMap := requestBody["product"].(map[string]interface{})
-		// Chuyển map thành dữ liệu JSON
+		// parse map to object
 		productJSON, err := json.Marshal(productMap)
 		if err != nil {
-			// Xử lý lỗi nếu có
 			panic(err)
 		}
-		// Unmarshal dữ liệu JSON vào biến product kiểu dữ liệu của bạn
+		// Unmarshal JSON data into product object
 		err = json.Unmarshal(productJSON, &product)
 		if err != nil {
-			// Xử lý lỗi nếu có
 			panic(err)
 		}
 		// dependencies

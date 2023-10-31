@@ -19,7 +19,7 @@ func GetUser(db *gorm.DB) func(c *gin.Context) {
 		decoder.Decode(&requestBody)
 
 		// Lấy giá trị của trường "fullname"
-		token := requestBody["token"].(string)
+		token := c.GetHeader("token")
 		// parse token
 		claims, err := common.PraseToken(token)
 		// check claims

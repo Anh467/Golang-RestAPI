@@ -3,7 +3,6 @@ package middleware
 import (
 	"biz"
 	"common"
-	"encoding/json"
 	"storage"
 
 	"github.com/gin-gonic/gin"
@@ -15,12 +14,13 @@ func CheckRole(db *gorm.DB, roles ...string) gin.HandlerFunc {
 		// flag to check panic
 		flag := false
 		// Read data from request body
-		var requestBody map[string]interface{}
-		decoder := json.NewDecoder(c.Request.Body)
-		decoder.Decode(&requestBody)
-
+		/*
+			var requestBody map[string]interface{}
+			decoder := json.NewDecoder(c.Request.Body)
+			decoder.Decode(&requestBody)
+		*/
 		// Get key data "token"
-		token := requestBody["token"].(string)
+		token := c.GetHeader("token")
 		// parse token
 		claims, err := common.PraseToken(token)
 		// check claims
@@ -43,7 +43,7 @@ func CheckRole(db *gorm.DB, roles ...string) gin.HandlerFunc {
 		if !flag {
 			panic(common.ROLE_USER_DENIED)
 		}
-		c.Set("requestBody", requestBody)
+		//c.Set("requestBody", requestBody)
 		c.Next()
 	}
 }
