@@ -15,6 +15,7 @@ const EMAILL_DUPLICATE = "Email duplicate"
 const USER_ID_NOT_FOUND = "user id not exist"
 const USER_ID_BLANK = "User can't be blank"
 const USER_ID_CANT_NEGATIVE = "User can't be negative"
+const USER_IS_NOT_OWNED = "User don't have permissions"
 
 // ERORR TAG JWT
 const TOKEN_NOT_APPROPRIATE = "Token not appropriate"
