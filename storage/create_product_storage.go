@@ -8,7 +8,7 @@ import (
 
 func (s *sqlserverStore) CreateProduct(ctx context.Context, product *entities.Product) *entities.Product {
 
-	var category *entities.CategorieModel
+	var category *entities.CategoryModel
 	// check exist category
 	if err := s.db.Where(" CategoryID = ? ", product.CategoryID).First(&category).Error; err != nil {
 		panic(common.CATEGORY_ID_NOT_EXIST)

@@ -14,7 +14,7 @@ func (s *sqlserverStore) UpdateProduct(ctx context.Context, product entities.Pro
 	// declare product
 	var productTemp entities.Product
 	// check appropriate category id
-	category := entities.CategorieModel{}
+	category := entities.CategoryModel{}
 	if err := s.db.Where("CategoryID = ?", product.CategoryID).First(&category).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			panic(common.CATEGORY_ID_NOT_EXIST)
