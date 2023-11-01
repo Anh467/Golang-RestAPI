@@ -1,5 +1,9 @@
 package entities
 
+// column
+const PRODUCT_COLUMN_PRODUCT_ID = "ProductID"
+
+// table
 const ProductModelTable = "Products"
 
 type ProductModel struct {

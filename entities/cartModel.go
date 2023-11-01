@@ -1,6 +1,11 @@
 package entities
 
+//table
 const CART_MODEL_TABLE = "Cart"
+
+// column
+const CART_COLUMN_QUANTITY = "Quantity"
+const CART_COLUMN_PRODUCT_ID = "ProductID"
 
 type CartModel struct {
 	UserID    int          `json:"userid" gorm:"column:UserID;"`
