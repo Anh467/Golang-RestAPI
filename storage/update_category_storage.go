@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) UpdateCategory(ctx context.Context, category entities.CategoryUpdate, categoryid string) *entities.CategoryModel {
+func (s *sqlserverStore) UpdateCategory(ctx context.Context, category entities.CategoryUpdate, categoryid int) *entities.CategoryModel {
 	// check exitinct of category
 	if err := s.db.Select("CategoryID").First(nil).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {

@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) DeleteCategory(ctx context.Context, categoryid string) {
+func (s *sqlserverStore) DeleteCategory(ctx context.Context, categoryid int) {
 	// check exitinct of category
 	if err := s.db.Select("CategoryID").Where("CategoryID = ?", categoryid).First(nil).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {

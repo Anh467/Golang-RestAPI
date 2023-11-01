@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) GetCategory(ctx context.Context, categoryid string) entities.CategoryModel {
+func (s *sqlserverStore) GetCategory(ctx context.Context, categoryid int) entities.CategoryModel {
 	var category entities.CategoryModel
 	if err := s.db.Select("CategoryID", "Name").Where("CategoryID = ?", categoryid).First(&category).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
