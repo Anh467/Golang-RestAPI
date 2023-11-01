@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (biz *createBiz) CreateProductBiz(ctx context.Context, product *entities.Product) *entities.Product {
+func (biz *createBiz) CreateProductBiz(ctx context.Context, product *entities.ProductModel) *entities.ProductModel {
 	// check blank
 	if product.Name == "" {
 		panic(common.NAME_BLANK)

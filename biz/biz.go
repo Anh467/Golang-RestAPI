@@ -15,11 +15,11 @@ type CreateStorage interface {
 	CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error)
 	SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error)
 	// producta
-	ListProduct(ctx context.Context, offsetNum int, limitNum int) ([]entities.Product, error)
-	GetProduct(ctx context.Context, productid string) *entities.Product
-	CreateProduct(ctx context.Context, product *entities.Product) *entities.Product
+	ListProduct(ctx context.Context, offsetNum int, limitNum int) ([]entities.ProductModel, error)
+	GetProduct(ctx context.Context, productid string) *entities.ProductModel
+	CreateProduct(ctx context.Context, product *entities.ProductModel) *entities.ProductModel
 	DeleteProduct(ctx context.Context, productid int)
-	UpdateProduct(ctx context.Context, product entities.ProductUpdate, productid int) *entities.Product
+	UpdateProduct(ctx context.Context, product entities.ProductUpdate, productid int) *entities.ProductModel
 	// categories
 	UpdateCategory(ctx context.Context, category entities.CategoryUpdate, categoryid int) *entities.CategoryModel
 	GetCategory(ctx context.Context, categoryid int) entities.CategoryModel

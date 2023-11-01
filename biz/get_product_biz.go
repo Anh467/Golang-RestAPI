@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (biz *createBiz) GetProductBiz(ctx context.Context, productid string) *entities.Product {
+func (biz *createBiz) GetProductBiz(ctx context.Context, productid string) *entities.ProductModel {
 	if productid == "" {
 		panic(common.PRODUCT_ID_BLANK)
 	}

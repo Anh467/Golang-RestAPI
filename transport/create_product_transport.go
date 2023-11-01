@@ -13,7 +13,7 @@ import (
 func CreateProductTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// declare product
-		var product *entities.Product
+		var product *entities.ProductModel
 		// Read data from request body
 		/*
 			requestBody := c.MustGet("requestBody").(map[string]interface{})

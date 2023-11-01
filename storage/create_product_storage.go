@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (s *sqlserverStore) CreateProduct(ctx context.Context, product *entities.Product) *entities.Product {
+func (s *sqlserverStore) CreateProduct(ctx context.Context, product *entities.ProductModel) *entities.ProductModel {
 
 	var category *entities.CategoryModel
 	// check exist category

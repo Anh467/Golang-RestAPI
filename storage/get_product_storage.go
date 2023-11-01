@@ -6,8 +6,8 @@ import (
 	"entities"
 )
 
-func (s *sqlserverStore) GetProduct(ctx context.Context, productid string) *entities.Product {
-	var product *entities.Product
+func (s *sqlserverStore) GetProduct(ctx context.Context, productid string) *entities.ProductModel {
+	var product *entities.ProductModel
 	if err := s.db.Where("ProductID = ?", productid).First(&product).Error; err != nil {
 		panic(err)
 	}

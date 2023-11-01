@@ -9,10 +9,10 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) UpdateProduct(ctx context.Context, product entities.ProductUpdate, productid int) *entities.Product {
+func (s *sqlserverStore) UpdateProduct(ctx context.Context, product entities.ProductUpdate, productid int) *entities.ProductModel {
 	// for biz ProductID bắt buộc phải có còn lại không có cũng được
 	// declare product
-	var productTemp entities.Product
+	var productTemp entities.ProductModel
 	// check appropriate category id
 	category := entities.CategoryModel{}
 	if err := s.db.Where("CategoryID = ?", product.CategoryID).First(&category).Error; err != nil {

@@ -2,7 +2,7 @@ package entities
 
 const ProductModelTable = "Products"
 
-type Product struct {
+type ProductModel struct {
 	ProductID   int           `json:"productid" gorm:"column:ProductID;primaryKey"`
 	Name        string        `json:"name" gorm:"column:Name"`
 	Description string        `json:"description" gorm:"column:Description"`
@@ -26,7 +26,7 @@ type ProductUpdate struct {
 	CategoryID  int     `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
 }
 
-func (Product) TableName() string {
+func (ProductModel) TableName() string {
 	return ProductModelTable
 }
 
