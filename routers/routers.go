@@ -29,6 +29,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			getAuthenRouters(api, db)
 			// category
 			getCategoryRouters(api, db)
+			// cart
+			getCartRouters(api, db)
 		}
 	}
 }
