@@ -15,7 +15,7 @@ import (
 func UpdateCartTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// declare
-		var cart entities.CartCreate
+		var cart entities.CartUpdate
 		// get param from header
 		userid, err := strconv.Atoi(c.Param("userid"))
 		if err != nil {
@@ -26,7 +26,7 @@ func UpdateCartTransport(db *gorm.DB) func(c *gin.Context) {
 			panic(common.ERR_INTEGER_WRONG_FORMAT)
 		}
 		// get param from request body
-		if err := c.ShouldBindJSON(cart); err != nil {
+		if err := c.ShouldBindJSON(&cart); err != nil {
 			panic(err)
 		}
 		cart.ProductID = productid
@@ -35,7 +35,7 @@ func UpdateCartTransport(db *gorm.DB) func(c *gin.Context) {
 		store := storage.NewSQLServerStorage(db)
 		business := biz.CreateStorage(store)
 		// creating
-		cartTemp := business.CreateCartStorage(c, cart)
+		cartTemp := business.UpdateCartStorage(c, cart)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"cart": cartTemp,

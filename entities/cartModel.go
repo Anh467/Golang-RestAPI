@@ -20,6 +20,10 @@ type CartGet struct {
 	Quantity  int          `json:"quantity" gorm:"column:Quantity;"`
 	Product   ProductModel `json:"product" gorm:"foreignKey:ProductID"`
 }
+type CartBody struct {
+	Quantity int `json:"quantity" gorm:"column:Quantity;"`
+}
+
 type CartCreate struct {
 	UserID    int `json:"userid" gorm:"column:UserID;"`
 	ProductID int `json:"productid" gorm:"column:ProductID;"`
@@ -43,5 +47,9 @@ func (CartUpdate) TableName() string {
 	return CART_MODEL_TABLE
 }
 func (CartGet) TableName() string {
+	return CART_MODEL_TABLE
+}
+
+func (CartBody) TableName() string {
 	return CART_MODEL_TABLE
 }

@@ -30,7 +30,7 @@ func CheckOwnUseridInParamUrl(db *gorm.DB) func(c *gin.Context) {
 			panic(common.TOKEN_NOT_APPROPRIATE)
 		}
 		// check is owned user
-		if claims.UserID == userid {
+		if claims.UserID != userid {
 			panic(common.USER_IS_NOT_OWNED)
 		}
 		// next

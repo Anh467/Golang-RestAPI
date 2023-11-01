@@ -29,7 +29,7 @@ type CreateStorage interface {
 	CreateCartStorage(ctx context.Context, cart entities.CartCreate) *entities.CartGet
 	DeleteCartStorage(ctx context.Context, userid, productid int)
 	GetCartStorage(ctx context.Context, userid, productid int) *entities.CartGet
-	ListCartStorage(ctx context.Context, userid int) []entities.CartGet
+	ListCartStorage(ctx context.Context, userid, limit, offset int) []entities.CartGet
 	UpdateCartStorage(ctx context.Context, cart entities.CartUpdate) *entities.CartGet
 }
 

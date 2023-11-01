@@ -9,15 +9,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) ListCartStorage(ctx context.Context, userid int) []entities.CartGet {
+func (s *sqlserverStore) ListCartStorage(ctx context.Context, userid, limit, offset int) []entities.CartGet {
 	// declare variables
 	var cartList []entities.CartGet
 	// get the cart
-	if err := s.db.Where("UserID = ?", userid).First(&cartList).Error; err != nil {
+	if err := s.db.Where("UserID = ?", userid).Limit(limit).Offset(limit * offset).Find(&cartList).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			panic(common.CART_NOT_EXIST)
+
+		} else {
+			panic(err)
 		}
-		panic(err)
 	}
 	// get product list information
 	for index, ele := range cartList {

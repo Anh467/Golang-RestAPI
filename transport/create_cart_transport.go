@@ -26,7 +26,7 @@ func CreateCartTransport(db *gorm.DB) func(c *gin.Context) {
 			panic(common.ERR_INTEGER_WRONG_FORMAT)
 		}
 		// get param from request body
-		if err := c.ShouldBindJSON(cart); err != nil {
+		if err := c.ShouldBindJSON(&cart); err != nil {
 			panic(err)
 		}
 		cart.ProductID = productid

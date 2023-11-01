@@ -3,16 +3,16 @@ package biz
 import (
 	"common"
 	"context"
-	"entities"
 )
 
-func (b *createBiz) ListCartBiz(ctx context.Context, userid int) []entities.CartGet {
+func (b *createBiz) DeleteCartStorage(ctx context.Context, userid, productid int) {
 	// check
+	if productid < 0 {
+		panic(common.PRODUCT_CANT_NEGATIVE)
+	}
 	if userid < 0 {
 		panic(common.USER_ID_CANT_NEGATIVE)
 	}
-	// listing
-	cartList := b.store.ListCartStorage(ctx, userid)
-	// res
-	return cartList
+	// deleting
+	b.store.DeleteCartStorage(ctx, userid, productid)
 }
