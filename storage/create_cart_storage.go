@@ -21,6 +21,8 @@ func (s *sqlserverStore) CreateCartStorage(ctx context.Context, cart entities.Ca
 	if err := s.db.Create(&cartTemp).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			panic(common.CART_NOT_EXIST)
+		} else if errors.Is(err, gorm.ErrDuplicatedKey) {
+			panic(common.CART_USER_ID_AND_PRODUCT_ID_DUPILICATE)
 		}
 		panic(err)
 	}

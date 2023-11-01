@@ -25,6 +25,12 @@ type CreateStorage interface {
 	GetCategory(ctx context.Context, categoryid int) entities.CategoryModel
 	DeleteCategory(ctx context.Context, categoryid int)
 	CreateCategory(ctx context.Context, category entities.CategoryCreate) *entities.CategoryModel
+	// cart
+	CreateCartStorage(ctx context.Context, cart entities.CartCreate) *entities.CartGet
+	DeleteCartStorage(ctx context.Context, userid, productid int)
+	GetCartStorage(ctx context.Context, userid, productid int) *entities.CartGet
+	ListCartStorage(ctx context.Context, userid int) []entities.CartGet
+	UpdateCartStorage(ctx context.Context, cart entities.CartUpdate) *entities.CartGet
 }
 
 type createBiz struct {
