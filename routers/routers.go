@@ -27,6 +27,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			getProductRouters(api, db)
 			// authen
 			getAuthenRouters(api, db)
+			// category
+			getCategoryRouters(api, db)
 		}
 	}
 }
