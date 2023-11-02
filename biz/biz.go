@@ -31,6 +31,12 @@ type CreateStorage interface {
 	GetCartStorage(ctx context.Context, userid, productid int) *entities.CartGet
 	ListCartStorage(ctx context.Context, userid, limit, offset int) []entities.CartGet
 	UpdateCartStorage(ctx context.Context, cart entities.CartUpdate) *entities.CartGet
+	// orders
+	CreateOrder(ctx context.Context, order entities.OrderCreate, userid int) entities.OrderModel
+	UpdateOrder(ctx context.Context, order entities.OrderUpdate, userid, orderid int) entities.OrderModel
+	DeleteOrder(ctx context.Context, orderid int)
+	GetOrder(ctx context.Context, orderid int, flag bool) entities.OrderModel
+	ListOrder(ctx context.Context, userid, limit, offset int, flag bool) []entities.OrderModel
 }
 
 type createBiz struct {
