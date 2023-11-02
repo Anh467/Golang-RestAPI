@@ -13,6 +13,7 @@ type UserModel struct {
 	Email    string `json:"email" gorm:"column:Email;"`
 	Password string `json:"password" gorm:"column:Password;"`
 	Role     string `json:"role" gorm:"column:Role;default:user"`
+	Address  string `json:"address" gorm:"column:Address"`
 }
 
 type UserCreateModel struct {
@@ -21,12 +22,14 @@ type UserCreateModel struct {
 	Email    string `json:"email" gorm:"column:Email"`
 	Password string `json:"password" gorm:"column:Password"`
 	Role     string `json:"role" gorm:"column:Role;default:user"`
+	Address  string `json:"address" gorm:"column:Address"`
 }
 
 type UserUpdate struct {
 	FullName string `json:"fullname" gorm:"column:FullName"`
 	Password string `json:"password" gorm:"column:Password"`
 	Role     string `json:"role" gorm:"column:Role;default:user"`
+	Address  string `json:"address" gorm:"column:Address"`
 }
 
 type UserGetModel struct {
@@ -34,6 +37,7 @@ type UserGetModel struct {
 	FullName string `json:"fullname" gorm:"column:FullName"`
 	Email    string `json:"email" gorm:"column:Email"`
 	Role     string `json:"role" gorm:"column:Role;default:user"`
+	Address  string `json:"address" gorm:"column:Address"`
 }
 
 type UserJWTModel struct {

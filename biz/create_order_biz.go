@@ -16,6 +16,10 @@ func (b *createBiz) CreateOrderBiz(ctx context.Context, order entities.OrderCrea
 			break
 		}
 	}
+	// check blank
+	if order.Address == "" {
+		panic(common.ORDER_ADDRESS_NOT_BLAMK)
+	}
 	// check status is exist or not
 	if !flag {
 		panic(common.STATUS_WRONG)

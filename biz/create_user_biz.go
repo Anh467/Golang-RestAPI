@@ -19,6 +19,9 @@ func (biz *createBiz) CreateUserBiz(ctx context.Context, user *entities.UserCrea
 	if user.Email == "" {
 		return nil, errors.New(common.EMAILL_BLANK)
 	}
+	if user.Address == "" {
+		return nil, errors.New(common.ADDRESS_BLANK)
+	}
 	// check regex
 	match, err := regexp.MatchString(common.EMAIL_REGEX, user.Email)
 	if err != nil || match == false {

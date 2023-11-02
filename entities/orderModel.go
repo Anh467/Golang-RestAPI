@@ -30,11 +30,13 @@ type OrderModel struct {
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	OrderDate string       `json:"orderdate" gorm:"column:OrderDate; default:GETDATE()"`
 	Status    string       `json:"status" gorm:"column:Status; default:confirm"`
+	Address   string       `json:"address" gorm:"column:Address"`
 	User      UserGetModel `json:"user" gorm:"foreignKey:UserID"`
 }
 
 type OrderUpdate struct {
-	Status string `json:"status" gorm:"column:Status"`
+	Status  string `json:"status" gorm:"column:Status"`
+	Address string `json:"address" gorm:"column:Address"`
 }
 
 type OrderCreate struct {
@@ -42,6 +44,7 @@ type OrderCreate struct {
 	UserID    int    `json:"userid" gorm:"column:UserID"`
 	OrderDate string `json:"orderdate" gorm:"column:OrderDate; default:GETDATE()"`
 	Status    string `json:"status" gorm:"column:Status; default:confirm"`
+	Address   string `json:"address" gorm:"column:Address"`
 }
 
 func (OrderModel) TableName() string {
