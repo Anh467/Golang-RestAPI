@@ -9,11 +9,17 @@ const ORDER_COLUMN_UserID = "UserID"
 const ORDER_COLUMN_OrderDate = "OrderDate"
 const ORDER_COLUMN_Status = "Status"
 
+// status
+const STATUS_DENIED = "denied"
+const STATUS_DELIVERING = "delivering"
+const STATUS_WAIT_FOR_CONFIRMATION = "confirm"
+const STATUS_COMPLETED = "completed"
+
 type OrderModel struct {
 	OrderID   int          `json:"orderid" gorm:"column:OrderID;primaryKey"`
 	UserID    int          `json:"userid" gorm:"column:UserID"`
-	OrderDate string       `json:"orderdate" gorm:"column:OrderDate"`
-	Status    string       `json:"status" gorm:"column:Status"`
+	OrderDate string       `json:"orderdate" gorm:"column:OrderDate; default:GETDATE()"`
+	Status    string       `json:"status" gorm:"column:Status; default:confirm"`
 	User      UserGetModel `json:"user" gorm:"foreignKey:UserID"`
 }
 
@@ -25,7 +31,7 @@ type OrderCreate struct {
 	OrderID   int    `json:"orderid" gorm:"column:OrderID;primaryKey"`
 	UserID    int    `json:"userid" gorm:"column:UserID"`
 	OrderDate string `json:"orderdate" gorm:"column:OrderDate"`
-	Status    string `json:"status" gorm:"column:Status"`
+	Status    string `json:"status" gorm:"column:Status; default:confirm"`
 }
 
 func (OrderModel) TableName() string {
