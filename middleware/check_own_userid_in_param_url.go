@@ -37,6 +37,8 @@ func CheckOwnUseridInParamUrl(db *gorm.DB, roles ...string) func(c *gin.Context)
 				flag = true
 			}
 		}
+		// set flag
+		c.Set("flag", flag)
 		// go to next
 		if flag {
 			c.Next()

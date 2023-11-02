@@ -6,8 +6,8 @@ import (
 	"entities"
 )
 
-func (b *createBiz) CreateOrder(ctx context.Context, order entities.OrderCreate, userid int) entities.OrderModel {
-	// declare flag
+func (b *createBiz) CreateOrderBiz(ctx context.Context, order entities.OrderCreate, userid int) entities.OrderModel {
+	//declare flag
 	flag := false
 	// check status is exist
 	for _, ele := range entities.STATUS_LIST {

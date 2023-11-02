@@ -20,7 +20,7 @@ func SignInAuthen(db *gorm.DB) func(c *gin.Context) {
 		store := storage.NewSQLServerStorage(db)
 		business := biz.NewCreateBiz(store)
 		//
-		userJwt, err := business.SignInAuthen(c.Request.Context(), user.Email, user.Password)
+		userJwt, err := business.SignInAuthenBiz(c.Request.Context(), user.Email, user.Password)
 		if err != nil {
 			panic(err.Error())
 		}

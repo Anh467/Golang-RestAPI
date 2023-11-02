@@ -3,6 +3,7 @@ package transport
 import (
 	"biz"
 	"common"
+	"net/http"
 	"storage"
 	"strconv"
 
@@ -39,8 +40,13 @@ func ListOrderTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		//  listing
-		business.ListOrder(c, userid, limitNum, offsetNum, flag)
+		order := business.ListOrderBiz(c, userid, limitNum, offsetNum, flag)
+		// res
+		c.JSON(http.StatusOK, gin.H{
+			"length": len(order),
+			"orders": order,
+		})
 	}
 }

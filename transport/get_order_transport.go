@@ -22,9 +22,9 @@ func GetOrderTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		//  geting
-		order := business.GetOrder(c, orderid, flag)
+		order := business.GetOrderBiz(c, orderid, flag)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"order": order,

@@ -19,7 +19,7 @@ func ListUser(db *gorm.DB) func(c *gin.Context) {
 		store := storage.NewSQLServerStorage(db)
 		business := biz.NewCreateBiz(store)
 		//
-		users, err := business.ListNewUserModel(c.Request.Context())
+		users, err := business.ListNewUserModelBiz(c.Request.Context())
 		if err != nil {
 			// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			// return

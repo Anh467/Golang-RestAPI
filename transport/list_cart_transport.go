@@ -38,9 +38,9 @@ func ListCartTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// creating
-		cartList := business.ListCartStorage(c, userid, limitNum, offsetNum)
+		cartList := business.ListCartBiz(c, userid, limitNum, offsetNum)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"cart":   cartList,

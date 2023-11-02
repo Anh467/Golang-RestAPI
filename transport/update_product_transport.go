@@ -25,9 +25,9 @@ func UpdateProductTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		bussiness := biz.CreateStorage(store)
+		bussiness := biz.NewCreateBiz(store)
 		// update
-		productTemp := bussiness.UpdateProduct(c, *product, productid)
+		productTemp := bussiness.UpdateProductBiz(c, *product, productid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"product": productTemp,

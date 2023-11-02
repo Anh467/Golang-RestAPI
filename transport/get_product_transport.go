@@ -14,9 +14,9 @@ func GetProduct(db *gorm.DB) func(c *gin.Context) {
 		productid := c.Param("productid")
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		bussiness := biz.CreateStorage(store)
+		bussiness := biz.NewCreateBiz(store)
 		// get product
-		product := bussiness.GetProduct(c, productid)
+		product := bussiness.GetProductBiz(c, productid)
 		c.JSON(http.StatusOK, gin.H{
 			"product": product,
 		})

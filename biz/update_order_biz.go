@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (b *createBiz) UpdateOrder(ctx context.Context, order entities.OrderUpdate, userid, orderid int) entities.OrderModel {
+func (b *createBiz) UpdateOrderBiz(ctx context.Context, order entities.OrderUpdate, userid, orderid int) entities.OrderModel {
 	// declare flag
 	flag := false
 	// check status is exist

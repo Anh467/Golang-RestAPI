@@ -5,7 +5,7 @@ import (
 	"context"
 )
 
-func (b *createBiz) DeleteCartStorage(ctx context.Context, userid, productid int) {
+func (b *createBiz) DeleteCartBiz(ctx context.Context, userid, productid int) {
 	// check
 	if productid < 0 {
 		panic(common.PRODUCT_CANT_NEGATIVE)

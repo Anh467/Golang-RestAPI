@@ -5,7 +5,7 @@ import (
 	"entities"
 )
 
-func (biz *createBiz) ListNewUserModel(ctx context.Context) ([]entities.UserModel, error) {
+func (biz *createBiz) ListNewUserModelBiz(ctx context.Context) ([]entities.UserModel, error) {
 	//
 	data, err := biz.store.ListUser(ctx)
 	if err != nil {

@@ -26,7 +26,7 @@ func (s *sqlserverStore) GetOrder(ctx context.Context, orderid int, flag bool) e
 		Where("Status != ?", entities.STATUS_CANCELED).
 		First(&order).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			panic(common.ORDER_DELETE_FAIL)
+			panic(common.ORDER_NOT_FOUND)
 		}
 		panic(err)
 	}

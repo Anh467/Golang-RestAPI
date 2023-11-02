@@ -23,9 +23,9 @@ func DeleteCategoryTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// deleting
-		business.DeleteCategory(c, categoryid)
+		business.DeleteCategoryBiz(c, categoryid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"status": "done",

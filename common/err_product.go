@@ -2,10 +2,10 @@ package common
 
 // check blank
 const PRODUCT_ID_BLANK = "you can require productid that not blank"
-const NAME_BLANK = "you can require productid that not blank"
-const DESCRIPTION_BLANK = "you can require productid that not blank"
-const PRICE_BLANK = "you can require productid that not blank"
-const CATEGORY_ID_BLANK = "you can require productid that not blank"
+const NAME_BLANK = "you can require product nname that not blank"
+const DESCRIPTION_BLANK = "you can require description that not blank"
+const PRICE_BLANK = "you can require price that not blank"
+const CATEGORY_ID_BLANK = "you can require category id that not blank"
 
 // others
 const PRODUCT_ID_NOT_EXIST = "you can require productid that not exist"

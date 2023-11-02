@@ -5,7 +5,7 @@ import (
 	"entities"
 )
 
-type CreateStorage interface {
+type createStorage interface {
 	// users
 	ListUser(ctx context.Context) ([]entities.UserModel, error)
 	GetUser(ctx context.Context, email, pass string) entities.UserGetModel
@@ -40,9 +40,9 @@ type CreateStorage interface {
 }
 
 type createBiz struct {
-	store CreateStorage
+	store createStorage
 }
 
-func NewCreateBiz(store CreateStorage) *createBiz {
+func NewCreateBiz(store createStorage) *createBiz {
 	return &createBiz{store: store}
 }

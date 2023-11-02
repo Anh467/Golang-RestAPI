@@ -14,7 +14,7 @@ func (s *sqlserverStore) UpdateOrder(ctx context.Context, order entities.OrderUp
 		Status: order.Status,
 	}
 	// this function below works simultaneously as creating, and checking the existant of user
-	if err := s.db.Where("UserID = ?", orderTemp.UserID).First(&orderTemp.User).Error; err != nil {
+	if err := s.db.Where("UserID = ?", userid).First(&orderTemp.User).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			panic(common.USER_ID_NOT_FOUND)
 		}
@@ -22,7 +22,14 @@ func (s *sqlserverStore) UpdateOrder(ctx context.Context, order entities.OrderUp
 	// updating
 	if err := s.db.Where("UserID = ?", userid).
 		Where("OrderID = ?", orderid).
-		Updates(&orderTemp).
+		Updates(&order).
+		Error; err != nil {
+		panic(err)
+	}
+	// getting
+	if err := s.db.Where("UserID = ?", userid).
+		Where("OrderID = ?", orderid).
+		First(&orderTemp).
 		Error; err != nil {
 		panic(err)
 	}

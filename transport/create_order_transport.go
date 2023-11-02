@@ -25,9 +25,9 @@ func CreateOrderTransport(db *gorm.DB) func(c *gin.Context) {
 		c.ShouldBindJSON(&order)
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		//  creating
-		orderTemp := business.CreateOrder(c, order, userid)
+		orderTemp := business.CreateOrderBiz(c, order, userid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"order": orderTemp,

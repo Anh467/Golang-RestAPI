@@ -23,9 +23,9 @@ func UpdateUserTransport(db *gorm.DB) func(c *gin.Context) {
 		c.ShouldBindJSON(&user)
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		bussiness := biz.CreateStorage(store)
+		bussiness := biz.NewCreateBiz(store)
 		// delete user
-		userTemp := bussiness.UpdateUser(c, user, userid)
+		userTemp := bussiness.UpdateUserBiz(c, user, userid)
 		c.JSON(http.StatusOK, gin.H{
 			"user": userTemp,
 		})

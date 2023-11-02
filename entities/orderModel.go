@@ -1,6 +1,12 @@
 package entities
 
-//table
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
+
+// table
 const ORDER_MODEL_TABLE = "Orders"
 
 // column
@@ -15,8 +21,9 @@ const STATUS_DELIVERING string = "delivering"  // order is delivering to the use
 const STATUS_WAIT_FOR_CONFIRMATION = "confirm" // after ordering user waits for confirmation of the admin
 const STATUS_COMPLETED = "completed"           // order was completed delivering to the user
 const STATUS_CANCELED = "canceled"             // User deleted the order and user can't see
+const STATUS_DEFAULT = ""                      // default status is STATUS_WAIT_FOR_CONFIRMATION
 // status list
-var STATUS_LIST = []string{STATUS_DENIED, STATUS_DELIVERING, STATUS_WAIT_FOR_CONFIRMATION, STATUS_COMPLETED, STATUS_CANCELED}
+var STATUS_LIST = []string{STATUS_DENIED, STATUS_DELIVERING, STATUS_WAIT_FOR_CONFIRMATION, STATUS_COMPLETED, STATUS_CANCELED, STATUS_DEFAULT}
 
 type OrderModel struct {
 	OrderID   int          `json:"orderid" gorm:"column:OrderID;primaryKey"`
@@ -31,7 +38,10 @@ type OrderUpdate struct {
 }
 
 type OrderCreate struct {
-	Status string `json:"status" gorm:"column:Status; default:confirm"`
+	OrderID   int    `json:"orderid" gorm:"column:OrderID;primaryKey"`
+	UserID    int    `json:"userid" gorm:"column:UserID"`
+	OrderDate string `json:"orderdate" gorm:"column:OrderDate; default:GETDATE()"`
+	Status    string `json:"status" gorm:"column:Status; default:confirm"`
 }
 
 func (OrderModel) TableName() string {
@@ -43,4 +53,11 @@ func (OrderUpdate) TableName() string {
 
 func (OrderCreate) TableName() string {
 	return ORDER_MODEL_TABLE
+}
+
+func (model *OrderCreate) BeforeSave(tx *gorm.DB) error {
+	if model.OrderDate == "" {
+		model.OrderDate = time.DateTime
+	}
+	return nil
 }

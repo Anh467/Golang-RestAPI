@@ -23,9 +23,9 @@ func GetCategoryTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// getting
-		category := business.GetCategory(c, categoryid)
+		category := business.GetCategoryBiz(c, categoryid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"category": category,

@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (b *createBiz) GetOrder(ctx context.Context, orderid int, flag bool) entities.OrderModel {
+func (b *createBiz) GetOrderBiz(ctx context.Context, orderid int, flag bool) entities.OrderModel {
 	// check orderid
 	if orderid <= 0 {
 		panic(common.ORDER_ID_CANT_NEGATIVE)

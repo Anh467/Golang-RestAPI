@@ -19,9 +19,9 @@ func DeleteUserTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		bussiness := biz.CreateStorage(store)
+		bussiness := biz.NewCreateBiz(store)
 		// delete user
-		bussiness.DeleteUser(c, userid)
+		bussiness.DeleteUserBiz(c, userid)
 		c.JSON(http.StatusOK, gin.H{
 			"status": "delete done",
 		})

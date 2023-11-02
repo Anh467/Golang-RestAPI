@@ -6,7 +6,7 @@ import (
 	"entities"
 )
 
-func (biz *createBiz) UpdateUserStorage(ctx context.Context, userUpdate entities.UserUpdate, userid int) *entities.UserModel {
+func (biz *createBiz) UpdateUserBiz(ctx context.Context, userUpdate entities.UserUpdate, userid int) *entities.UserModel {
 	// check blank
 	if userid == 0 {
 		panic(common.USER_ID_BLANK)

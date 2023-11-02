@@ -5,7 +5,7 @@ import (
 	"context"
 )
 
-func (b *createBiz) DeleteOrder(ctx context.Context, orderid int) {
+func (b *createBiz) DeleteOrderBiz(ctx context.Context, orderid int) {
 	// check orderid
 	if orderid <= 0 {
 		panic(common.ORDER_ID_CANT_NEGATIVE)

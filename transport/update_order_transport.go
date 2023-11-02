@@ -28,9 +28,9 @@ func UpdateOrderTransport(db *gorm.DB) func(c *gin.Context) {
 		c.ShouldBindJSON(&order)
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		//  updating
-		orderTemp := business.UpdateOrder(c, order, userid, orderid)
+		orderTemp := business.UpdateOrderBiz(c, order, userid, orderid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"order": orderTemp,

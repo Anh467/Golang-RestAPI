@@ -24,9 +24,9 @@ func DeleteCartTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// creating
-		business.DeleteCartStorage(c, userid, productid)
+		business.DeleteCartBiz(c, userid, productid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"status": "done",

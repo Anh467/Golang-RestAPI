@@ -7,7 +7,7 @@ import (
 	"errors"
 )
 
-func (biz *createBiz) SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error) {
+func (biz *createBiz) SignInAuthenBiz(ctx context.Context, email, pass string) (*entities.UserJWTModel, error) {
 	// check blank
 	if pass == "" {
 		return nil, errors.New(common.PASS_WORD_BLANK)

@@ -33,9 +33,9 @@ func UpdateCartTransport(db *gorm.DB) func(c *gin.Context) {
 		cart.UserID = userid
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// creating
-		cartTemp := business.UpdateCartStorage(c, cart)
+		cartTemp := business.UpdateCartBiz(c, cart)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"cart": cartTemp,

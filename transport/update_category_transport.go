@@ -29,9 +29,9 @@ func UpdateCategoryTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// updating
-		categoryTemp := business.UpdateCategory(c, category, categoryid)
+		categoryTemp := business.UpdateCategoryBiz(c, category, categoryid)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"category": categoryTemp,

@@ -20,9 +20,9 @@ func CreateCategoryTransport(db *gorm.DB) func(c *gin.Context) {
 		}
 		// dependencies
 		store := storage.NewSQLServerStorage(db)
-		business := biz.CreateStorage(store)
+		business := biz.NewCreateBiz(store)
 		// creating
-		categoryTemp := business.CreateCategory(c, category)
+		categoryTemp := business.CreateCategoryBiz(c, category)
 		// res
 		c.JSON(http.StatusOK, gin.H{
 			"category": categoryTemp,
