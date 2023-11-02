@@ -39,6 +39,8 @@ func CheckRole(db *gorm.DB, roles ...string) gin.HandlerFunc {
 				flag = true
 			}
 		}
+		// set flag for the next middleware use
+		c.Set("flag", flag)
 		// go to next
 		if !flag {
 			panic(common.ROLE_USER_DENIED)

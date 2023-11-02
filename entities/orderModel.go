@@ -10,10 +10,11 @@ const ORDER_COLUMN_OrderDate = "OrderDate"
 const ORDER_COLUMN_Status = "Status"
 
 // status
-const STATUS_DENIED = "denied"
-const STATUS_DELIVERING = "delivering"
-const STATUS_WAIT_FOR_CONFIRMATION = "confirm"
-const STATUS_COMPLETED = "completed"
+const STATUS_DENIED = "denied"                 // denied is the term which mean that the user stop the delivering
+const STATUS_DELIVERING = "delivering"         // order is delivering to the user
+const STATUS_WAIT_FOR_CONFIRMATION = "confirm" // after ordering user waits for confirmation of the admin
+const STATUS_COMPLETED = "completed"           // order was completed delivering to the user
+const STATUS_CANCELED = "canceled"             // User deleted the order and user can't see
 
 type OrderModel struct {
 	OrderID   int          `json:"orderid" gorm:"column:OrderID;primaryKey"`
