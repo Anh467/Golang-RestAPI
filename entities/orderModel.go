@@ -31,10 +31,7 @@ type OrderUpdate struct {
 }
 
 type OrderCreate struct {
-	OrderID   int    `json:"orderid" gorm:"column:OrderID;primaryKey"`
-	UserID    int    `json:"userid" gorm:"column:UserID"`
-	OrderDate string `json:"orderdate" gorm:"column:OrderDate"`
-	Status    string `json:"status" gorm:"column:Status; default:confirm"`
+	Status string `json:"status" gorm:"column:Status; default:confirm"`
 }
 
 func (OrderModel) TableName() string {

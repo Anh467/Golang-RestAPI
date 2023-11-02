@@ -31,6 +31,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			getCategoryRouters(api, db)
 			// cart
 			getCartRouters(api, db)
+			// order
+			getOrderRouters(api, db)
 		}
 	}
 }

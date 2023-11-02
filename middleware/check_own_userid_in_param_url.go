@@ -10,6 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// param roles for exception that when roles passing wwho has this role will can do something
 func CheckOwnUseridInParamUrl(db *gorm.DB, roles ...string) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// check admin
