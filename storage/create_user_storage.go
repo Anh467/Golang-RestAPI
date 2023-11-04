@@ -1,11 +1,11 @@
 package storage
 
 import (
-	"common"
 	"context"
-	"entities"
 	"errors"
 	"fmt"
+	"main/common"
+	"main/entities"
 )
 
 func (s *sqlserverStore) CreateUser(ctx context.Context, user *entities.UserCreateModel) (*entities.UserJWTModel, error) {

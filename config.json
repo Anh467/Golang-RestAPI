@@ -14,5 +14,13 @@
         "db": "Shop",
         "options":"",
         "dialect": "mssql"
+    },
+    "mysqll" : {
+        "host": "root",
+        "user":"root",
+        "pass": "Viet@080702",
+        "db": "Shop",
+        "options":"",
+        "dialect": "mysql"
     }
 }

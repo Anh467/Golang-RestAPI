@@ -1,9 +1,9 @@
 package storage
 
 import (
-	"common"
 	"context"
-	"entities"
+	"main/common"
+	"main/entities"
 )
 
 func (s *sqlserverStore) SignInAuthen(ctx context.Context, email, pass string) (*entities.UserJWTModel, error) {

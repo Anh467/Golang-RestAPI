@@ -1,9 +1,9 @@
 package biz
 
 import (
-	"common"
 	"context"
-	"entities"
+	"main/common"
+	"main/entities"
 )
 
 func (biz *createBiz) UpdateUserBiz(ctx context.Context, userUpdate entities.UserUpdate, userid int) *entities.UserModel {

@@ -1,9 +1,9 @@
 package storage
 
 import (
-	"common"
 	"context"
-	"entities"
+	"main/common"
+	"main/entities"
 )
 
 func (s *sqlserverStore) GetProduct(ctx context.Context, productid string) *entities.ProductModel {

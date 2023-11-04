@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"biz"
-	"common"
-	"storage"
+	"main/biz"
+	"main/common"
+	"main/storage"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

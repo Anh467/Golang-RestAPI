@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"entities"
-	"middleware"
-	"transport"
+	"main/entities"
+	"main/middleware"
+	"main/transport"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

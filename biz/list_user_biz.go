@@ -2,7 +2,7 @@ package biz
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 func (biz *createBiz) ListNewUserModelBiz(ctx context.Context) ([]entities.UserModel, error) {

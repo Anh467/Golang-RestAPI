@@ -1,11 +1,11 @@
 package transport
 
 import (
-	"biz"
-	"common"
-	"entities"
+	"main/biz"
+	"main/common"
+	"main/entities"
+	"main/storage"
 	"net/http"
-	"storage"
 	"strconv"
 
 	"github.com/gin-gonic/gin"

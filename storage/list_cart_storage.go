@@ -1,10 +1,10 @@
 package storage
 
 import (
-	"common"
 	"context"
-	"entities"
 	"errors"
+	"main/common"
+	"main/entities"
 
 	"gorm.io/gorm"
 )

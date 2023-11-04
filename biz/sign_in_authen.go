@@ -1,10 +1,10 @@
 package biz
 
 import (
-	"common"
 	"context"
-	"entities"
 	"errors"
+	"main/common"
+	"main/entities"
 )
 
 func (biz *createBiz) SignInAuthenBiz(ctx context.Context, email, pass string) (*entities.UserJWTModel, error) {

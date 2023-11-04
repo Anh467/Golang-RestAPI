@@ -1,8 +1,8 @@
 package biz
 
 import (
-	"common"
 	"context"
+	"main/common"
 )
 
 func (biz *createBiz) DeleteUserBiz(ctx context.Context, userid int) {

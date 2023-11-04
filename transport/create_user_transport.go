@@ -1,11 +1,11 @@
 package transport
 
 import (
-	"biz"
 	"encoding/json"
-	"entities"
+	"main/biz"
+	"main/entities"
+	"main/storage"
 	"net/http"
-	"storage"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

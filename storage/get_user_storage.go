@@ -2,7 +2,7 @@ package storage
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 func (s *sqlserverStore) GetUser(ctx context.Context, email, pass string) entities.UserGetModel {

@@ -2,7 +2,7 @@ package storage
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 func (s *sqlserverStore) ListProduct(ctx context.Context, offsetNum int, limitNum int) ([]entities.ProductModel, error) {

@@ -2,7 +2,7 @@ package biz
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 type createStorage interface {

@@ -2,7 +2,7 @@ package biz
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 func (biz *createBiz) ListProductBiz(ctx context.Context, offsetNum int, limitNum int) ([]entities.ProductModel, error) {

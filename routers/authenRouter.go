@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"transport"
+	"main/transport"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

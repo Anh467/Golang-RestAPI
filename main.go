@@ -1,16 +1,17 @@
 package main
 
 import (
-	"common"
 	"encoding/json"
-	"entities"
 	"log"
-	"routers"
+	"main/common"
+	"main/entities"
+	"main/routers"
 
 	"fmt"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
@@ -86,6 +87,24 @@ func ConnectSqlServerGorm(Config entities.SqlServer) (*gorm.DB, error) {
 	connString := fmt.Sprintf("server=localhost; user id=%s; password=%s; database=%s;",
 		Config.User, Config.Pass, Config.DB)
 	db, err := gorm.Open(sqlserver.Open(connString), &gorm.Config{})
+	if err != nil {
+		fmt.Print("connection wrong " + "\n")
+		log.Fatal(err)
+	}
+	// Kiểm tra kết nối
+	err = db.Error
+	if err != nil {
+		fmt.Print("check connection wrong ")
+		log.Fatal(err)
+	}
+	fmt.Println("Kết nối thành công!")
+	return db, err
+}
+
+func ConnectMySQLGorm(Config entities.MySql) (*gorm.DB, error) {
+	connString := fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		Config.User, Config.Pass, Config.DB)
+	db, err := gorm.Open(mysql.Open(connString), &gorm.Config{})
 	if err != nil {
 		fmt.Print("connection wrong " + "\n")
 		log.Fatal(err)

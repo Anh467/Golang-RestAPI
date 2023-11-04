@@ -13,6 +13,7 @@ type ProductModel struct {
 	Price       float64       `json:"price" gorm:"column:Price"`
 	Category    CategoryModel `json:"Category" gorm:"foreignKey:CategoryID"`
 	CategoryID  int           `json:"categoryid" gorm:"column:CategoryID"`
+	Image       string        `json:"image" gorm:"column:Image"`
 }
 
 type ProductCreation struct {
@@ -21,6 +22,7 @@ type ProductCreation struct {
 	Description string  `json:"description" gorm:"column:Description;primaryKey"`
 	Price       float64 `json:"price" gorm:"column:Price;primaryKey"`
 	CategoryID  int     `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
+	Image       string  `json:"image" gorm:"column:Image"`
 }
 
 type ProductUpdate struct {
@@ -28,6 +30,7 @@ type ProductUpdate struct {
 	Description string  `json:"description" gorm:"column:Description;primaryKey"`
 	Price       float64 `json:"price" gorm:"column:Price;primaryKey"`
 	CategoryID  int     `json:"categoryid" gorm:"column:CategoryID;primaryKey"`
+	Image       string  `json:"image" gorm:"column:Image"`
 }
 
 func (ProductModel) TableName() string {

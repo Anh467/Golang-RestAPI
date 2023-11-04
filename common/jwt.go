@@ -1,8 +1,8 @@
 package common
 
 import (
-	"entities"
 	"errors"
+	"main/entities"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"

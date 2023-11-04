@@ -1,9 +1,9 @@
 package biz
 
 import (
-	"common"
 	"context"
-	"entities"
+	"main/common"
+	"main/entities"
 )
 
 func (b *createBiz) UpdateOrderBiz(ctx context.Context, order entities.OrderUpdate, userid, orderid int) entities.OrderModel {

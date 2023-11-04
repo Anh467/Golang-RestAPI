@@ -2,7 +2,7 @@ package storage
 
 import (
 	"context"
-	"entities"
+	"main/entities"
 )
 
 func (s *sqlserverStore) ListUser(ctx context.Context) ([]entities.UserModel, error) {

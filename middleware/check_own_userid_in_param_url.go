@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"biz"
-	"common"
-	"storage"
+	"main/biz"
+	"main/common"
+	"main/storage"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
