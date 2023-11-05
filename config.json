@@ -15,7 +15,7 @@
         "options":"",
         "dialect": "mssql"
     },
-    "mysqll" : {
+    "mysql" : {
         "host": "root",
         "user":"root",
         "pass": "Viet@080702",

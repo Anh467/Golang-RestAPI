@@ -1,3 +1,4 @@
+-- /src/mysql/shop/schema.sql
 -- Tạo Cơ sở dữ liệu
 CREATE DATABASE Shop;
 

@@ -16,20 +16,23 @@ import (
 	"gorm.io/gorm"
 )
 
-var configPath string = "config.json"
+var configPath string = "./config.json"
 
 func setConfigPath() {
-	path, err := common.GetRootProject(configPath)
-	if err != nil {
-		fmt.Println("err: " + err.Error())
-	} else {
-		fmt.Println("path: " + path)
-	}
-	configPath = path
+
+	// path, err := filepath.Abs(filepath.Dir(os.Args[0]))
+
+	// if err != nil {
+	// 	fmt.Println("err: " + err.Error())
+	// } else {
+	// 	fmt.Println("path: " + path)
+	// }
+	// configPath = filepath.Join(path, configPath)
+
 }
 
 func getConfigJson(path string) entities.Config {
-
+	fmt.Println("PATH: ", path)
 	file, err := common.GetFile(path)
 
 	var config entities.Config
@@ -53,12 +56,11 @@ func getConfigJson(path string) entities.Config {
 }
 
 func main() {
-
-	setConfigPath()
+	fmt.Println("$$$$$$$$$$$$$$$" + configPath)
 	configJson := getConfigJson(configPath)
 	fmt.Print(configJson)
 	//
-	db, err := ConnectSqlServerGorm(configJson.SqlServer)
+	db, err := ConnectMySQLGorm(configJson.MySql)
 	if err != nil {
 		fmt.Print("[main/main.go]: " + err.Error())
 		return
