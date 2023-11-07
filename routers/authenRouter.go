@@ -10,6 +10,6 @@ import (
 func getAuthenRouters(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/authen")
 	{
-		user.GET("/signin", transport.SignInAuthen(db))
+		user.POST("/signin", transport.SignInAuthen(db))
 	}
 }
