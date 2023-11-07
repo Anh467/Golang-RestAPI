@@ -33,6 +33,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			getCartRouters(api, db)
 			// order
 			getOrderRouters(api, db)
+			// order detail
+			getOrderDetailRouters(api, db)
 		}
 	}
 }

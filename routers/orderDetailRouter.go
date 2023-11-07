@@ -12,9 +12,9 @@ import (
 func getOrderDetailRouters(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/orderdetail")
 	{
-		user.POST("/", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.CreateOrderDetailTransport(db))
-		user.PUT("/", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.UpdateOrderDetailTransport(db))
-		user.DELETE("/", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.DeleteOrderDetailTransport(db))
-		user.GET("/", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.ListOrderDetailTransport(db))
+		user.POST("/:userid/:orderid", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.CreateOrderDetailTransport(db))
+		user.PUT("/:userid/:orderid/:productid", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.UpdateOrderDetailTransport(db))
+		user.DELETE("/:userid/:orderid/:productid", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.DeleteOrderDetailTransport(db))
+		user.GET("/:userid/:orderid", middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN), transport.ListOrderDetailTransport(db))
 	}
 }

@@ -6,7 +6,7 @@ const OrderDetail_COLUMN_ProductID = "ProductID"
 const OrderDetail_COLUMN_Quantity = "Quantity"
 
 // table
-const OrderDetailModelTable = "Products"
+const OrderDetailModelTable = "OrderDetails"
 
 type OrderDetailModel struct {
 	OrderID   int          `json:"orderid" gorm:"column:OrderID"`

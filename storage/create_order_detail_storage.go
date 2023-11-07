@@ -9,8 +9,10 @@ import (
 
 func (s *sqlserverStore) CreateOrderDetailStorage(ctx context.Context, userid, orderid int, orderdetails []entities.OrderDetailCreate) []entities.OrderDetailGet {
 	// check this userid own this orderid
-	countRows := s.db.Where("UserID = ?", userid).Where("OrderID = ?", orderid).
-		Table(entities.OrderDetailModelTable).Find(nil).RowsAffected
+	var countRows int64
+	if err := s.db.Table(entities.ORDER_MODEL_TABLE).Where("UserID = ? AND OrderID = ?", userid, orderid).Count(&countRows).Error; err != nil {
+		panic(err)
+	}
 	if countRows == 0 {
 		panic("This userid not own this orderid")
 	}
@@ -32,10 +34,10 @@ func (s *sqlserverStore) CreateOrderDetailStorage(ctx context.Context, userid, o
 	}
 	// get
 	if err := s.db.Where("OrderID = ?", orderid).
-		Preload(entities.ProductModelTable, func(db *gorm.DB) *gorm.DB {
+		Preload("Product", func(db *gorm.DB) *gorm.DB {
 			return db.Select("ProductID", "Name", "Image")
 		}).
-		Find(&orderDetailsGet); err != nil {
+		Find(&orderDetailsGet).Error; err != nil {
 		panic(err)
 	}
 	// response

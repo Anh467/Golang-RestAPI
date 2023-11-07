@@ -35,7 +35,7 @@ func UpdateOrderDetailTransport(db *gorm.DB) func(c *gin.Context) {
 		flag := c.GetBool("flag")
 		// get body
 		if err := c.ShouldBindJSON(&orderdetail); err != nil {
-			panic(err)
+			panic(common.JSON_BODY_WRONG_FORMAMT)
 		}
 		//dependency
 		store := storage.NewSQLServerStorage(db)

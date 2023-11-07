@@ -22,8 +22,9 @@ func (s sqlserverStore) UpdateOrderDetailStorage(ctx context.Context,
 			panic(common.ORDER_DETAIL_CANT_UPDATE)
 		}
 		// check this userid own this orderid
-		countRows := s.db.Where("UserID = ?", userid).Where("OrderID = ?", orderid).
-			Table(entities.OrderDetailModelTable).Find(nil).RowsAffected
+		var countRows int64
+		s.db.Where("UserID = ?", userid).Where("OrderID = ?", orderid).
+			Table(entities.ORDER_MODEL_TABLE).Count(&countRows)
 		if countRows == 0 {
 			panic("This userid not own this orderid")
 		}
@@ -40,7 +41,7 @@ func (s sqlserverStore) UpdateOrderDetailStorage(ctx context.Context,
 		panic(common.ORDER_DETAIL_NO_ROW_UPDATE)
 	}
 	// get order
-	if err := s.db.Where("ProductID = ?", productid).Preload("Product").First(&orderdetailTemp); err != nil {
+	if err := s.db.Where("ProductID = ?", productid).Preload("Product").First(&orderdetailTemp).Error; err != nil {
 		panic(err)
 	}
 	return orderdetailTemp
