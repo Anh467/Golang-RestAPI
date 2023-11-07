@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// denied not use this storage
 func (s *sqlserverStore) getOrderDetailStorage(ctx context.Context, userid, orderid int) []entities.OrderDetailGet {
 	var orderDetailsGet []entities.OrderDetailGet
 	// check this userid own this orderid

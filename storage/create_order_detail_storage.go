@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) CreateOrderDetailStorageg(ctx context.Context, userid, orderid int, orderdetails []entities.OrderDetailCreate) []entities.OrderDetailGet {
+func (s *sqlserverStore) CreateOrderDetailStorage(ctx context.Context, userid, orderid int, orderdetails []entities.OrderDetailCreate) []entities.OrderDetailGet {
 	// check this userid own this orderid
 	countRows := s.db.Where("UserID = ?", userid).Where("OrderID = ?", orderid).
 		Table(entities.OrderDetailModelTable).Find(nil).RowsAffected

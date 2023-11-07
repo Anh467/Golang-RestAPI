@@ -37,6 +37,11 @@ type createStorage interface {
 	DeleteOrder(ctx context.Context, orderid int)
 	GetOrder(ctx context.Context, orderid int, flag bool) entities.OrderModel
 	ListOrder(ctx context.Context, userid, limit, offset int, flag bool) []entities.OrderModel
+	// order details
+	CreateOrderDetailStorage(ctx context.Context, userid, orderid int, orderdetails []entities.OrderDetailCreate) []entities.OrderDetailGet
+	UpdateOrderDetail(ctx context.Context, orderdetail entities.OrderDetailUpdate, userid, orderid, productid int, flag bool) entities.OrderDetailGet
+	DeleteOrderDetail(ctx context.Context, userid, orderid, productid int, flag bool)
+	ListOrderDetail(ctx context.Context, userid, orderid, offset, limit int, flag bool) []entities.OrderDetailGet
 }
 
 type createBiz struct {
