@@ -6,7 +6,7 @@ import (
 	"main/entities"
 )
 
-func (s sqlserverStore) UpdateOrderDetail(ctx context.Context,
+func (s sqlserverStore) UpdateOrderDetailStorage(ctx context.Context,
 	orderdetail entities.OrderDetailUpdate, userid, orderid, productid int, flag bool) entities.OrderDetailGet {
 	// Declare order details
 	var orderdetailTemp entities.OrderDetailGet

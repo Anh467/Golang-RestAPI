@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *sqlserverStore) ListOrderDetail(ctx context.Context, userid, orderid, offset, limit int, flag bool) []entities.OrderDetailGet {
+func (s *sqlserverStore) ListOrderDetailStorage(ctx context.Context, userid, orderid, offset, limit int, flag bool) []entities.OrderDetailGet {
 	// declare
 	var orderdetails []entities.OrderDetailGet
 

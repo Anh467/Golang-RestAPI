@@ -6,7 +6,7 @@ import (
 	"main/entities"
 )
 
-func (s sqlserverStore) DeleteOrderDetail(ctx context.Context, userid, orderid, productid int, flag bool) {
+func (s sqlserverStore) DeleteOrderDetailStorage(ctx context.Context, userid, orderid, productid int, flag bool) {
 	// get order status
 	var order entities.OrderModel
 	if err := s.db.Select("Status").Where("OrderID = ?", orderid).First(&order).Error; err != nil {
