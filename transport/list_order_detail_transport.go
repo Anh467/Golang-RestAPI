@@ -51,6 +51,7 @@ func ListOrderDetailTransport(db *gorm.DB) func(c *gin.Context) {
 		orderDetails := business.ListOrderDetailBiz(c, userid, orderid, offsetNum, limitNum, flag)
 		//res
 		c.JSON(http.StatusOK, gin.H{
+			"length":       len(orderDetails),
 			"orderdetails": orderDetails,
 		})
 	}

@@ -37,6 +37,7 @@ func ListCategoryTransport(db *gorm.DB) func(c *gin.Context) {
 		categories := business.ListCategoryBiz(c, offsetNum, limitNum)
 		// res
 		c.JSON(http.StatusOK, gin.H{
+			"length":     len(categories),
 			"categories": categories,
 		})
 	}

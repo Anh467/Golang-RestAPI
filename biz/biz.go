@@ -21,6 +21,7 @@ type createStorage interface {
 	CreateProduct(ctx context.Context, product *entities.ProductModel) *entities.ProductModel
 	DeleteProduct(ctx context.Context, productid int)
 	UpdateProduct(ctx context.Context, product entities.ProductUpdate, productid int) *entities.ProductModel
+	ListProductBaseOnCategoryIDStorage(ctx context.Context, categoryid, offsetNum int, limitNum int) []entities.ProductModel
 	// categories
 	UpdateCategory(ctx context.Context, category entities.CategoryUpdate, categoryid int) *entities.CategoryModel
 	GetCategory(ctx context.Context, categoryid int) entities.CategoryModel

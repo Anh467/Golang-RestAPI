@@ -42,6 +42,7 @@ func ListProduct(db *gorm.DB) func(c *gin.Context) {
 			panic(err.Error())
 		}
 		c.JSON(http.StatusOK, gin.H{
+			"length":   len(products),
 			"products": products,
 		})
 	}

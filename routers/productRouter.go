@@ -12,6 +12,7 @@ import (
 func getProductRouters(api *gin.RouterGroup, db *gorm.DB) {
 	user := api.Group("/product")
 	{
+		user.GET("/list/:categoryid", transport.ListProductBaseOnCategoryIDTransport(db))
 		user.GET("/get/:productid", transport.GetProduct(db))
 		user.GET("/list", transport.ListProduct(db))
 		user.POST("/", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.CreateProductTransport(db))
