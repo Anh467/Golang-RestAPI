@@ -15,8 +15,10 @@ func getUserRouters(api *gin.RouterGroup, db *gorm.DB) {
 	//user.Use(middleware.Recovery())
 	user.GET("/list", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.ListUser(db))
 	user.POST("/create", transport.CreateUser(db))
+	// get the infomation of this user whose token
 	user.GET("/get", transport.GetUser(db))
-	user.GET("/:userid", transport.GetUser(db))
+	// get the infomation of this user , but must have admin permission
+	user.GET("/:userid", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.GetUserByID(db))
 	user.PUT("/:userid",
 		middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN),
 		transport.UpdateUserTransport(db))
