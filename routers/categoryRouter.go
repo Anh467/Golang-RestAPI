@@ -15,6 +15,7 @@ func getCategoryRouters(api *gin.RouterGroup, db *gorm.DB) {
 		user.POST("/", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.CreateCategoryTransport(db))
 		user.PUT("/:categoryid", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.UpdateCategoryTransport(db))
 		user.GET("/:categoryid", transport.GetCategoryTransport(db))
+		user.GET("", transport.ListCategoryTransport(db))
 		user.DELETE("/:categoryid", middleware.CheckRole(db, entities.ROLE_ADMIN), transport.DeleteCategoryTransport(db))
 	}
 }
