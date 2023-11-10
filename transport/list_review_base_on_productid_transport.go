@@ -32,7 +32,7 @@ func ListReviewBaseOnProductIDTransport(db *gorm.DB) func(c *gin.Context) {
 			}
 		}
 		// get headers
-		productid, err := strconv.Atoi(c.Param("productid "))
+		productid, err := strconv.Atoi(c.Param("productid"))
 		if err != nil {
 			panic(common.ERR_INTEGER_WRONG_FORMAT)
 		}

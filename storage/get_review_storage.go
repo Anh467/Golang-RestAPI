@@ -11,7 +11,7 @@ func (s *sqlserverStore) GetReviewStorage(ctx context.Context, reviewid int) ent
 	var review entities.ReviewGet
 	// check existion of the review
 	var count int64
-	s.db.Where("ReviewID = ?", reviewid).First(&entities.ReviewModel{}).Count(&count)
+	s.db.Where("ReviewID = ?", reviewid).Table(entities.REVIEW_TABLE).First(&entities.ReviewModel{}).Count(&count)
 	if count == 0 {
 		panic(common.REVIEW_ID_NOT_EXIST)
 	}

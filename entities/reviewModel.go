@@ -3,7 +3,7 @@ package entities
 const REVIEW_TABLE = "Reviews"
 
 type ReviewModel struct {
-	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID ; primaryKey"`
+	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID; primaryKey"`
 	ProductID int          `json:"productid" gorm:"column:ProductID"`
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	Rating    int          `json:"rating" gorm:"column:Rating"`
@@ -20,13 +20,13 @@ type ReviewCreate struct {
 }
 
 type ReviewUpdate struct {
-	ReviewID int    `json:"reviewid" gorm:"column:ReviewID ; primaryKey"`
+	ReviewID int    `json:"reviewid" gorm:"column:ReviewID; primaryKey"`
 	Rating   int    `json:"rating" gorm:"column:Rating"`
 	Comment  string `json:"comment" gorm:"column:Comment"`
 }
 
 type ReviewGet struct {
-	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID ; primaryKey"`
+	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID; primaryKey"`
 	ProductID int          `json:"productid" gorm:"column:ProductID"`
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	Rating    int          `json:"rating" gorm:"column:Rating"`

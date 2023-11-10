@@ -16,12 +16,12 @@ func (s *sqlserverStore) CreateReviewStorage(ctx context.Context, review entitie
 	}
 	var count int64
 	// check the existant of the userid
-	s.db.Where("UserID = ?", review.UserID).First(&entities.UserGetModel{}).Count(&count)
+	s.db.Where("UserID = ?", review.UserID).Table(entities.REVIEW_TABLE).First(&entities.UserGetModel{}).Count(&count)
 	if count == 0 {
 		panic(common.USER_ID_NOT_FOUND)
 	}
 	// check the existant of the productid
-	s.db.Where("ProductID = ?", review.ProductID).First(&entities.ProductModel{}).Count(&count)
+	s.db.Where("ProductID = ?", review.ProductID).Table(entities.REVIEW_TABLE).First(&entities.ProductModel{}).Count(&count)
 	if count == 0 {
 		panic(common.USER_ID_NOT_FOUND)
 	}
