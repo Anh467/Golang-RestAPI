@@ -1,20 +1,23 @@
 package storage
 
 import (
+	"context"
 	"main/common"
 	"main/entities"
 )
 
-func (s *sqlserverStore) UpdateReviewStorage(ctx, review entities.ReviewUpdate) entities.ReviewGet {
+func (s *sqlserverStore) UpdateReviewStorage(ctx context.Context, review entities.ReviewUpdate, userid int) entities.ReviewGet {
+
 	// declare review
+	var count int64
 	reviewTemp := &entities.ReviewGet{
 		ReviewID: review.ReviewID,
 		Rating:   review.Rating,
 		Comment:  review.Comment,
 	}
+
 	// check existion of the review
-	var count int64
-	s.db.Where("ReviewID = ?", reviewTemp.ReviewID).First(&entities.ReviewModel{}).Count(&count)
+	s.db.Where("ReviewID = ?", reviewTemp.ReviewID).Where("UserID = ?", userid).First(&entities.ReviewModel{}).Count(&count)
 	if count == 0 {
 		panic(common.REVIEW_ID_NOT_EXIST)
 	}

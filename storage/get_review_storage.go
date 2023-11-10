@@ -1,11 +1,12 @@
 package storage
 
 import (
+	"context"
 	"main/common"
 	"main/entities"
 )
 
-func (s *sqlserverStore) GetReviewStorage(ctx, reviewid int) entities.ReviewGet {
+func (s *sqlserverStore) GetReviewStorage(ctx context.Context, reviewid int) entities.ReviewGet {
 	// declare review
 	var review entities.ReviewGet
 	// check existion of the review

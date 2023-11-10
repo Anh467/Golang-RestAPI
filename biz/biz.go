@@ -47,11 +47,11 @@ type createStorage interface {
 	ListOrderDetailStorage(ctx context.Context, userid, orderid, offset, limit int, flag bool) []entities.OrderDetailGet
 	// reviews
 	CreateReviewStorage(ctx context.Context, review entities.ReviewCreate) entities.ReviewGet
-	DeleteReviewStorage(ctx context.Context, reviewid int)
-	GetReviewStorage(ctx, reviewid int) entities.ReviewGet
+	DeleteReviewStorage(ctx context.Context, reviewid, userid int)
+	GetReviewStorage(ctx context.Context, reviewid int) entities.ReviewGet
 	ListReviewAllStorage(ctx context.Context, offsetNum int, limitNum int) []entities.ReviewGet
 	ListReviewBaseOnProductIDStorage(ctx context.Context, productid, offsetNum int, limitNum int) []entities.ReviewGet
-	UpdateReviewStorage(ctx, review entities.ReviewUpdate) entities.ReviewGet
+	UpdateReviewStorage(ctx context.Context, review entities.ReviewUpdate, userid int) entities.ReviewGet
 }
 
 type createBiz struct {
