@@ -4,7 +4,7 @@ const REVIEW_TABLE = "Reviews"
 
 type ReviewModel struct {
 	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID ; primaryKey"`
-	ProductID int          `json:"ProductID" gorm:"column:ProductID"`
+	ProductID int          `json:"productid" gorm:"column:ProductID"`
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	Rating    int          `json:"rating" gorm:"column:Rating"`
 	Comment   string       `json:"comment" gorm:"column:Comment"`
@@ -13,7 +13,7 @@ type ReviewModel struct {
 }
 
 type ReviewCreate struct {
-	ProductID int    `json:"ProductID" gorm:"column:ProductID"`
+	ProductID int    `json:"productid" gorm:"column:ProductID"`
 	UserID    int    `json:"userid" gorm:"column:UserID"`
 	Rating    int    `json:"rating" gorm:"column:Rating"`
 	Comment   string `json:"comment" gorm:"column:Comment"`
@@ -27,7 +27,7 @@ type ReviewUpdate struct {
 
 type ReviewGet struct {
 	ReviewID  int          `json:"reviewid" gorm:"column:ReviewID ; primaryKey"`
-	ProductID int          `json:"ProductID" gorm:"column:ProductID"`
+	ProductID int          `json:"productid" gorm:"column:ProductID"`
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	Rating    int          `json:"rating" gorm:"column:Rating"`
 	Comment   string       `json:"comment" gorm:"column:Comment"`

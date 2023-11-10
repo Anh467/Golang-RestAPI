@@ -35,6 +35,8 @@ func V1Router(r *gin.Engine, db *gorm.DB) {
 			getOrderRouters(api, db)
 			// order detail
 			getOrderDetailRouters(api, db)
+			// review
+			getReviewRouters(api, db)
 		}
 	}
 }
