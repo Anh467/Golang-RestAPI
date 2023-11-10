@@ -31,7 +31,6 @@ type ReviewGet struct {
 	UserID    int          `json:"userid" gorm:"column:UserID"`
 	Rating    int          `json:"rating" gorm:"column:Rating"`
 	Comment   string       `json:"comment" gorm:"column:Comment"`
-	Product   ProductModel `json:"product" gorm:"foreignKey:ProductID"`
 	User      UserGetModel `json:"user" gorm:"foreignKey:UserID"`
 }
 
