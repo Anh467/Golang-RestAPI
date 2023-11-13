@@ -13,11 +13,9 @@ import (
 
 func GetCartTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
+		// get userid
+		userid := c.MustGet("userid").(int)
 		// get param from header
-		userid, err := strconv.Atoi(c.Param("userid"))
-		if err != nil {
-			panic(common.ERR_INTEGER_WRONG_FORMAT)
-		}
 		productid, err := strconv.Atoi(c.Param("productid"))
 		if err != nil {
 			panic(common.ERR_INTEGER_WRONG_FORMAT)

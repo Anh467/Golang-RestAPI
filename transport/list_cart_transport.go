@@ -2,7 +2,6 @@ package transport
 
 import (
 	"main/biz"
-	"main/common"
 	"main/storage"
 	"net/http"
 	"strconv"
@@ -15,11 +14,8 @@ func ListCartTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// offset
 		var offsetNum, limitNum int = 0, 5
-		// get param from header
-		userid, err := strconv.Atoi(c.Param("userid"))
-		if err != nil {
-			panic(common.ERR_INTEGER_WRONG_FORMAT)
-		}
+		// get userid
+		userid := c.MustGet("userid").(int)
 		// get params from url
 		limit := c.Query("limit")
 		offset := c.Query("offset")
