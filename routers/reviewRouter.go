@@ -1,7 +1,6 @@
 package routers
 
 import (
-	"main/entities"
 	"main/middleware"
 	"main/transport"
 
@@ -21,14 +20,14 @@ func getReviewRouters(api *gin.RouterGroup, db *gorm.DB) {
 		user.GET("/list/:productid",
 			transport.ListReviewBaseOnProductIDTransport(db))
 		// need permission
-		user.PUT("/:userid/:reviewid",
-			middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN),
+		user.PUT("/:reviewid",
+			middleware.GetTokenInformation(db),
 			transport.UpdateReviewTransport(db))
-		user.POST("/:userid",
-			middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN),
+		user.POST("/",
+			middleware.GetTokenInformation(db),
 			transport.CreateReviewTransport(db))
-		user.DELETE("/:userid/:reviewid",
-			middleware.CheckOwnUseridInParamUrl(db, entities.ROLE_ADMIN),
+		user.DELETE("/:reviewid",
+			middleware.GetTokenInformation(db),
 			transport.DeleteReviewTransport(db))
 	}
 }

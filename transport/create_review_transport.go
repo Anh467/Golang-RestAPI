@@ -6,7 +6,6 @@ import (
 	"main/entities"
 	"main/storage"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -16,11 +15,8 @@ func CreateReviewTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// declare
 		var review entities.ReviewCreate
-		// get headers
-		userid, err := strconv.Atoi(c.Param("userid"))
-		if err != nil {
-			panic(common.ERR_INTEGER_WRONG_FORMAT)
-		}
+		// get userid
+		userid := c.MustGet("userid").(int)
 		// get body
 		if err := c.ShouldBind(&review); err != nil {
 			panic(common.JSON_BODY_WRONG_FORMAMT)

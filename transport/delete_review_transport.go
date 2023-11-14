@@ -13,11 +13,9 @@ import (
 
 func DeleteReviewTransport(db *gorm.DB) func(c *gin.Context) {
 	return func(c *gin.Context) {
+		// get userid
+		userid := c.MustGet("userid").(int)
 		// get headers
-		userid, err := strconv.Atoi(c.Param("userid"))
-		if err != nil {
-			panic(common.ERR_INTEGER_WRONG_FORMAT)
-		}
 		reviewid, err := strconv.Atoi(c.Param("reviewid"))
 		if err != nil {
 			panic(common.ERR_INTEGER_WRONG_FORMAT)

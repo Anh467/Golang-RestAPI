@@ -67,12 +67,13 @@ func main() {
 	}
 	//
 	gin.SetMode(gin.ReleaseMode)
-	//gin
+	//ginS
 	r := gin.Default()
 	// setting
 	r.Use(cors.New(cors.Config{
 		AllowHeaders:    []string{"*"},
 		AllowAllOrigins: true,
+		AllowMethods:    []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"},
 	}))
 	//
 	r.ForwardedByClientIP = true
